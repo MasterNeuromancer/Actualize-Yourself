@@ -36,6 +36,9 @@ module.exports = app => {
     });
   });
 
+  // Useful links for self-actualizers
+  app.get("/resources", (req, res) => res.render("resources"));
+
   // Render 404 page for any unmatched routes
   app.get("*", (req, res) => res.render("404"));
 };
