@@ -1,7 +1,7 @@
 var $name = $("#name-text")
 var $what = $("#what-description");
 var $who = $("#who-description");
-var $enjoy = $("#enjoy-description");
+var $enjoy = $("#do-description");
 
 
 var API = {
@@ -11,7 +11,7 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "PUT",
-      url: "api/profile",
+      url: "/api/profile",
       data: JSON.stringify(user)
     });
   },
@@ -22,9 +22,9 @@ var handleFormSubmit = function(event) {
 
   var user = {
     name: $name.val().trim(),
-    nouns: $what.val().split(","),
-    verbs:$who.val().split(","),
-    adjectives: $enjoy.val().split(",")
+    nouns: $what.val().trim(),
+    verbs:$who.val().trim(),
+    adjectives: $enjoy.val().trim()
   };
 
   if (!(user.name)) {

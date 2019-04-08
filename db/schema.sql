@@ -3,3 +3,5 @@ CREATE DATABASE tasksDB;
 
 USE tasksDB;
 
+select*from User;
+

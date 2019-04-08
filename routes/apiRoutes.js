@@ -10,7 +10,7 @@ module.exports = app => {
   // otherwise send back an error
   app.post(`/api/signup`, (req, res) => {
     console.log(req.body);
-    db.User.create({
+    db.Users.create({
       email: req.body.email,
       password: req.body.password
     })
@@ -29,19 +29,22 @@ module.exports = app => {
   });
 
   // Update their profile (created with signup)
-  app.put("/profile", isAuthenticated, (req, res) => {
-    db.User.update({
+  app.put("/api/profile", isAuthenticated, (req, res) => {
+    db.Users.update({
       name: req.body.name,
       nouns: req.body.nouns,
       adjectives: req.body.adjectives,
       verbs: req.body.verbs
+    }, { where: { id: req.user.id }})
+    .then(profile => {
+      res.json(profile);
     });
   });
 
   // LONG-TERM GOAL ROUTES
   // Get all long term goals
   app.get(`/api/long-term`, isAuthenticated, (req, res) => {
-    db.LongTerm.findAll({
+    db.LongTerms.findAll({
       where: {
         UserId: req.user.id
       }
@@ -52,7 +55,7 @@ module.exports = app => {
 
   // Get a specific long term goal
   app.get(`/api/long-term/:id`, isAuthenticated, (req, res) => {
-    db.LongTerm.findOne({
+    db.LongTerms.findOne({
       where: {
         UserId: req.user.id,
         id: req.params.id
@@ -64,7 +67,7 @@ module.exports = app => {
 
   // Create a new long-term goal
   app.post(`/api/long-term`, isAuthenticated, (req, res) => {
-    db.LongTerm.create({
+    db.LongTerms.create({
       UserId: req.user.id,
       title: req.body.title,
       completedBy: req.body.completedBy,
@@ -77,7 +80,7 @@ module.exports = app => {
 
   // Update an existing long-term goal
   app.post(`/api/long-term/:id`, isAuthenticated, (req, res) => {
-    db.LongTerm.update({
+    db.LongTerms.update({
       UserId: req.user.id,
       title: req.body.title,
       completedBy: req.body.completedBy,
@@ -90,7 +93,7 @@ module.exports = app => {
 
   // Delete a long-term goal by id
   app.delete(`/api/long-term/:id`, isAuthenticated, (req, res) => {
-    db.LongTerm.destroy({ where: { id: req.params.id } }).then(destroyed => {
+    db.LongTerms.destroy({ where: { id: req.params.id } }).then(destroyed => {
       res.json(destroyed);
     });
   });

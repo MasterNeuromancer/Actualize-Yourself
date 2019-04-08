@@ -3,7 +3,7 @@
 const bcrypt = require("bcrypt-nodejs");
 // Creating our User model
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define("User", {
+  const User = sequelize.define("Users", {
     // The email cannot be null, and must be a proper email before creation
     email: {
       type: DataTypes.STRING,
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = models => {
-    models.User.hasMany(models.Example);
+    User.hasMany(models.LongTerms);
   };
 
   // Creating a custom method for our User model.
