@@ -1,25 +1,27 @@
 <div class="row">
   <div class="col-8 offset-2">
-    <h1>Hello {{user.email}}!</h1>
+    <h1>Welcome to your Profile Manager!!</h1>
     <form class="clearfix mb-4" action="POST">
       <div class="form-group">
-        <label for="example-text">Example Text</label>
-        <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+        <label for="name-text">Name</label>
+        <textarea class="form-control" id="name-text" aria-describedby="name-description" placeholder="John Doe">{{user.nane}}s</textarea>
+      </div>
+      <h3>Describe Your Best Self:
+      </h3>
+      <div class="form-group">
+        <label for="what-description">What Are You? (Separate with commas)</label>
+        <textarea class="form-control" id="what-description" aria-describedby="what-description" placeholder="Programmer, Christian, Writer . . ."> {{user.nouns}} </textarea>
       </div>
       <div class="form-group">
-        <label for="example-description">Example Description</label>
-        <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
+        <label for="who-description">Who Are You? (Separate with commas)</label>
+        <textarea class="form-control" id="who-description" aria-describedby="who-description" placeholder="Funny, Generous, Worried . . ."> {{user.verbs}} </textarea>
+      </div>
+      <div class="form-group">
+        <label for="enjoy-description">What Do You Do? (Separate with commas)</label>
+        <textarea class="form-control" id="enjoy-description" aria-describedby="enjoy-description" placeholder="Exercising, Reading . . ."> {{user.adjectives}} </textarea>
       </div>
       <button id="submit" class="btn btn-primary float-right">Submit</button>
     </form>
-    <h3>Examples:</h3>
-    <ul id="example-list" class="list-group">
-      {{#each user.Examples}}
-      <li data-id="{{this.id}}" class="list-group-item">
-        <a href="example/{{this.id}}">{{this.text}}</a>
-        <button class="btn btn-danger float-right delete">ｘ</button>
-      </li>
-      {{/each}}
-    </ul>
+
   </div>
 </div>
