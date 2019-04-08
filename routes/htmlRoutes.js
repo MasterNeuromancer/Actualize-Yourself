@@ -12,11 +12,11 @@ module.exports = app => {
 
   // Load profile page
   app.get("/profile", isAuthenticated, (req, res) => {
-    db.User.findOne({
+    db.Users.findOne({
       where: {
         id: req.user.id
       },
-      include: [db.LongTerm]
+      include: [db.LongTerms]
     }).then(dbUser => {
       res.render("profile", { user: dbUser });
     });
@@ -29,7 +29,7 @@ module.exports = app => {
 
   // Get form for updating a long-term goal
   app.get("/long-term/:id", isAuthenticated, (req, res) => {
-    db.LongTerm.findOne({ where: { id: req.params.id } }).then(longTerm => {
+    db.LongTerms.findOne({ where: { id: req.params.id } }).then(longTerm => {
       res.render("long-term", {
         longTerm: longTerm
       });

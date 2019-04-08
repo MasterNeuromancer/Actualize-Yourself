@@ -1,18 +1,18 @@
 module.exports = (sequelize, DataTypes) => {
-  const LongTerm = sequelize.define("LongTerm", {
+  const LongTerms = sequelize.define("LongTerms", {
     title: DataTypes.STRING,
     completedBy: DataTypes.DATE,
     description: DataTypes.TEXT,
     category: DataTypes.STRING
   });
 
-  LongTerm.associate = function (models) {
-    models.LongTerm.belongsTo(models.User, {
+  LongTerms.associate = function (models) {
+    models.LongTerms.belongsTo(models.Users, {
       onDelete: "CASCADE",
       foreignKey: {
         allowNull: false
       }
     });
   };
-  return LongTerm;
+  return LongTerms;
 };
