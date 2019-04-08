@@ -23,13 +23,13 @@ module.exports = app => {
   });
 
   // Route for logging user out
-  app.get(`/logout`, (req, res) => {
+  app.get(`/api/logout`, (req, res) => {
     req.logout();
     res.redirect(`/`);
   });
 
   // Update their profile (created with signup)
-  app.put("/profile", isAuthenticated, (req, res) => {
+  app.put("/api/profile", isAuthenticated, (req, res) => {
     db.User.update({
       name: req.body.name,
       nouns: req.body.nouns,

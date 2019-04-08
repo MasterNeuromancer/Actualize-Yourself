@@ -1,9 +1,10 @@
 const db = require("../models");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = app => {
-  // Load signup page
-  app.get("/", isAuthenticated, (req, res) => res.render("welcome"));
+  // Home page
+  app.get("/", isAuthenticated, (req, res) => res.render("home"));
 
+  // Load signup page
   app.get("/signup", (req, res) => res.render("signup"));
 
   // Load login page
@@ -21,11 +22,16 @@ module.exports = app => {
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", isAuthenticated, (req, res) => {
-    db.LongTerm.findOne({ where: { id: req.params.id } }).then(dbExample => {
-      res.render("example", {
-        example: dbExample
+  // Get form for creating a long-term goal
+  app.get("/long-term", isAuthenticated, (req, res) => {
+    res.render("long-term");
+  });
+
+  // Get form for updating a long-term goal
+  app.get("/long-term/:id", isAuthenticated, (req, res) => {
+    db.LongTerm.findOne({ where: { id: req.params.id } }).then(longTerm => {
+      res.render("long-term", {
+        longTerm: longTerm
       });
     });
   });
