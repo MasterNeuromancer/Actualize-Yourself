@@ -5,7 +5,7 @@ const isAuthenticated = require(`../config/middleware/isAuthenticated`);
 module.exports = app => {
   // Get all long term tasks
   app.get(`/api/long-term`, isAuthenticated, (req, res) => {
-    db.Example.findAll({
+    db.LongTerm.findAll({
       where: {
         UserId: req.user.id
       }
@@ -16,7 +16,7 @@ module.exports = app => {
 
   // Get a specific long term task
   app.get(`/api/long-term/:id`, isAuthenticated, (req, res) => {
-    db.Example.findOne({
+    db.LongTerm.findOne({
       where: {
         UserId: req.user.id,
         id: req.params.id
@@ -28,10 +28,12 @@ module.exports = app => {
 
   // Create a new long-term task
   app.post(`/api/long-term`, isAuthenticated, (req, res) => {
-    db.Example.create({
+    db.LongTerm.create({
       UserId: req.user.id,
-      // text: req.body.text,
-      // description: req.body.description
+      title: req.body.title,
+      completedBy: req.body.completedBy,
+      description: req.body.description,
+      category: req.body.category
     }).then(longTermTask => {
       res.json(longTermTask);
     });
@@ -39,18 +41,20 @@ module.exports = app => {
 
   // Update an existing long-term task
   app.post(`/api/long-term/:id`, isAuthenticated, (req, res) => {
-    db.Example.update({
+    db.LongTerm.update({
       UserId: req.user.id,
-      // text: req.body.text,
-      // description: req.body.description
+      title: req.body.title,
+      completedBy: req.body.completedBy,
+      description: req.body.description,
+      category: req.body.category
     }, { where: { id: req.params.id } }).then(longTermTask => {
       res.json(longTermTask);
     });
   });
 
-  // Delete an example by id
+  // Delete a long-term task by id
   app.delete(`/api/long-term/:id`, isAuthenticated, (req, res) => {
-    db.Example.destroy({ where: { id: req.params.id } }).then(destroyed => {
+    db.LongTerm.destroy({ where: { id: req.params.id } }).then(destroyed => {
       res.json(destroyed);
     });
   });
