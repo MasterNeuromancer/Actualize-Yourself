@@ -16,6 +16,10 @@
   },
   "production": {
     "use_env_variable": "JAWSDB_URL",
+    "username": "v5urccznxds6ni0d",
+    "password": "ywbxipbwc9v1saez",
+    "database": "tasksDB",
+    "host": "a5s42n4idx9husyc.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
 }
