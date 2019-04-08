@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const LongTerm = sequelize.define("Example", {
+  const LongTerm = sequelize.define("LongTerm", {
     title: DataTypes.STRING,
     completedBy: DataTypes.DATE,
     description: DataTypes.TEXT,
