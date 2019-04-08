@@ -1,7 +1,7 @@
 var $name = $("#name-text")
 var $what = $("#what-description");
 var $who = $("#who-description");
-var $enjoy = $("#enjoy-description");
+var $enjoy = $("#do-description");
 
 
 var API = {
