@@ -39,19 +39,20 @@
             <ul>
                 {{#each tasks}}
                 {{!-- <li><a href="#">{{task.name}}: </a>{{task.description}}</li> --}}
-                <div class="popup" onclick="myFunction()">{{task.name}}: <p>{{task.description}}</p>
+                <div class="popup" onclick="myFunction()">{{tasks.name}}: <p>{{tasks.description}}</p>
                     <span class="popuptext" id="myPopup">
-                        <li>Task Name: {{task.name}}</li>
-                        <li>Description: {{task.description}}</li>
-                        <li>Complete By: {{task.date}}</li>
+                        <li>Task Name: {{tasks.name}}</li>
+                        <li>Description: {{tasks.description}}</li>
+                        <li>Complete By: {{tasks.date}}</li>
                         <li>Checkpoints:
-                            {{task.checkpoints}}
+                            {{tasks.checkpoints}}
                         </li>
-                        <a href="/long-term/{{task.id}}">(Edit)</a>
+                        <a href="/long-term/{{tasks.id}}">(Edit)</a>
                     </span>
                 </div>
                 {{/each}}
             </ul>
+
             <div class="line"></div>
 
             <h2>What to watch out for!</h2>

@@ -11,6 +11,18 @@ module.exports = app => {
   }).then(dbUser => {
     console.log(dbUser);
     res.render("home", { user: dbUser, tasks: dbUser.LongTerms });
+
+
+
+
+
+    // WORK ON THIS CODE HERE ^^^^ HANNNAHHHHH 
+
+
+
+
+
+    
   });
 });
 
@@ -41,7 +53,7 @@ module.exports = app => {
   app.get("/long-term/:id", isAuthenticated, (req, res) => {
     db.LongTerms.findOne({ where: { id: req.params.id } }).then(longTerm => {
       res.render("long-term", {
-        longTerm: longTerm
+        longterm: longTerm
       });
     });
   });
