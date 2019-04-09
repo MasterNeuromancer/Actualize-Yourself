@@ -9,7 +9,8 @@ module.exports = app => {
     },
     include: [db.LongTerms]
   }).then(dbUser => {
-    res.render("home", { user: dbUser });
+    console.log(dbUser);
+    res.render("home", { user: dbUser, tasks: dbUser.LongTerms });
   });
 });
 

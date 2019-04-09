@@ -6,7 +6,6 @@
             <div class="sidebar-header">
                 <h3>{{user.name}}</h3>
             </div>
-
             <ul class="list-unstyled components">
                 <li class="active">
                     <br>
@@ -38,9 +37,20 @@
 
             <h2>Tasks</h2>
             <ul>
-            {{#each tasks}} 
-                <li><a href="#">{{task.name}}: </a>{{task.description}}</li>
-            {{/each}}
+                {{#each tasks}}
+                {{!-- <li><a href="#">{{task.name}}: </a>{{task.description}}</li> --}}
+                <div class="popup" onclick="myFunction()">{{task.name}}: <p>{{task.description}}</p>
+                    <span class="popuptext" id="myPopup">
+                        <li>Task Name: {{task.name}}</li>
+                        <li>Description: {{task.description}}</li>
+                        <li>Complete By: {{task.date}}</li>
+                        <li>Checkpoints:
+                            {{task.checkpoints}}
+                        </li>
+                        <a href="/long-term/{{task.id}}">(Edit)</a>
+                    </span>
+                </div>
+                {{/each}}
             </ul>
             <div class="line"></div>
 
@@ -96,6 +106,11 @@
                 }
             }).Draw(console.log("hit"));
         });
+
+        function myFunction() {
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+        }
     </script>
 </body>
 
