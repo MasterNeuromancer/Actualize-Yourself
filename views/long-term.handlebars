@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-8 offset-2">
+        <h1>Describe your Long-Term Goal</h1>
+        <form class="clearfix mb-4" action="POST">
+            <div class="form-group">
+                <label for="title">What kind of goal is it?</label>
+                <textarea class="form-control" id="title" aria-describedby="name-description"
+                    placeholder="Be Fit">{{longterm.title}}</textarea>
+            </div>
+            <h3>Remember, SMART goals are Specific, Measurable, Achievable, Relevant, and Timely
+            </h3>
+            {{!-- A section for category, to be added --}}
+            <div class="form-group">
+                <label for="description">How will you know when your goal is achieved?</label>
+                <textarea class="form-control" id="description" aria-describedby="name-description"
+                    placeholder="I will be reasonably fit when I can do 50 pushups in 2 minutes">{{longterm.description}}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="completedBy">When is the soonest you could reasonably acheive this goal?</label>
+                <textarea class="form-control" id="completedBy" aria-describedby="who-description"
+                    placeholder="By consistantly training, I can do 50 pushups in 2 minutes by the start of next year.">{{longterm.completedBy}}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="details">How do you plan to get there? Any additional notes can go here.</label>
+                <textarea class="form-control" id="details" aria-describedby="do-description"
+                    placeholder="My training regimen will be: ......">{{longterm.details}}</textarea>
+            </div>
+            <button id="submit" class="btn btn-primary float-right">Submit</button>
+        </form>
+
+    </div>
+</div>
