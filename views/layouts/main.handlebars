@@ -11,9 +11,6 @@
   <link rel="stylesheet" href="/styles/styles.css">
 
   <!-- SCRIPT STUFF FOR TIMELINE!  -->
-  <link rel="stylesheet" href="path/to/timeline.css" />
-  <script src="path/to/jquery.min.js"></script>
-  <script src="path/to/timeline.js"></script>
   <title>Home Page</title>
 </head>
 
@@ -34,17 +31,13 @@
           {{/if}}
         </ul>
         <ul class="navbar-nav">
-          {{#unless user}}
-          <li class="nav-item">
-            <a class="nav-link" href="/">Signup</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
-          </li>
-          {{/unless}}
           {{#if user}}
           <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
+          </li>
+          {{else}}
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
           </li>
           {{/if}}
         </ul>
