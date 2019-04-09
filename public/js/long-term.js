@@ -1,5 +1,4 @@
-
-var $title = $("#title")
+var $title = $("#title");
 var $description = $("#description");
 var $completedBy = $("#completedBy");
 var $details = $("#details");
@@ -37,7 +36,7 @@ var handleFormSubmit = function(event) {
     window.location.replace("/");
   }
 
-  API.saveUser(user).then(function(){
+  API.saveGoal(goal).then(function(){
     console.log("GOT HERE");
     redirect();
   });
