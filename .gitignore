@@ -81,5 +81,8 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+<<<<<<< HEAD
 
 config/
+=======
+>>>>>>> a6d335d2d4e2b290b986f19413e60368514cf2d5

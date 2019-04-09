@@ -1,5 +1,7 @@
-DROP DATABASE IF EXISTS exampledb;
-CREATE DATABASE exampledb;
+DROP DATABASE IF EXISTS tasksDB;
+CREATE DATABASE tasksDB;
 
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
+USE tasksDB;
+
+select*from User;
+
