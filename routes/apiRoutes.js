@@ -66,7 +66,7 @@ module.exports = app => {
   });
 
   // Create a new long-term goal
-  app.post(`/api/long-term`, isAuthenticated, (req, res) => {
+  app.put(`/api/long-term`, isAuthenticated, (req, res) => {
     db.LongTerms.create({
       UserId: req.user.id,
       title: req.body.title,
