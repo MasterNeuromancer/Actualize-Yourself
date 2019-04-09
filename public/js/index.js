@@ -1,3 +1,4 @@
+
 var $name = $("#name-text")
 var $what = $("#what-description");
 var $who = $("#who-description");
@@ -32,13 +33,14 @@ var handleFormSubmit = function(event) {
     return;
   }
 
-  API.saveUser(user).then(function() {
-  });
+  function redirect() {
+    window.location.replace("/");
+  }
 
-  $name.val("");
-  $what.val("");
-  $who.val("");
-  $enjoy.val("");
+  API.saveUser(user).then(function(){
+    console.log("GOT HERE");
+    redirect();
+  });
 };
 
 $("#submit").on("click", handleFormSubmit);
