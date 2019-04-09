@@ -153,12 +153,14 @@
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         });
 
-        $.UDNZTimeline({
-            "data_url": "./test.js",
-            "container": {
-                "id": "demo_1_container"
-            }
-        }).Draw();
+        $(function () {
+            $.UDNZTimeline({
+                "data_url": "url/or/path/to/data.json",
+                "container": {
+                    "id": "demo_1_container"
+                }
+            }).Draw(console.log("hit"));
+        });
     </script>
 </body>
 
