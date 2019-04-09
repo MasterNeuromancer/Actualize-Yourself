@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "mysql88",
-    "database": "tasksdb",
+    "database": "tasksDB",
     "host": "localhost",
     "dialect": "mysql"
   },
