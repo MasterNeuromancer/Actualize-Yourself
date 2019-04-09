@@ -1,3 +1,7 @@
+function redirect() {
+  window.location.replace("/profile");
+}
+
 $("#user-sign-up").on("submit", function(e) {
   e.preventDefault();
   $.ajax({
@@ -14,7 +18,8 @@ $("#user-sign-up").on("submit", function(e) {
   })
     .then(function(data) {
       console.log(data);
-      window.location.replace(data);
+      redirect();
+      // window.location.replace(data);
     })
     .catch(function(err) {
       console.log(err);
