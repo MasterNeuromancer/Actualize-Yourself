@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "PaQq5QMnRC&s^As9REmY@xIiF489C7",
+    "password": "mysql88",
     "database": "tasksDB",
     "host": "localhost",
     "dialect": "mysql"

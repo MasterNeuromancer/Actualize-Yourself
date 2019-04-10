@@ -69,7 +69,7 @@ span {
 }
 .wrapper {
     display: flex;
-    align-items: stretch;
+    align-items: center;
     text-align: center;
 }
 
@@ -213,6 +213,8 @@ a.article:hover {
     min-height: 100vh;
     transition: all 0.3s;
 }
+
+
 
 /* ---------------------------------------------------
     MEDIAQUERIES
