@@ -30,73 +30,75 @@ module.exports = app => {
 
   // Update their profile (created with signup)
   app.put("/api/profile", isAuthenticated, (req, res) => {
-    db.Users.update({
-      name: req.body.name,
-      nouns: req.body.nouns,
-      adjectives: req.body.adjectives,
-      verbs: req.body.verbs
-    }, { where: { id: req.user.id }})
-    .then(profile => {
+    db.Users.update(
+      {
+        name: req.body.name,
+        nouns: req.body.nouns,
+        adjectives: req.body.adjectives,
+        verbs: req.body.verbs
+      },
+      { where: { id: req.user.id } }
+    ).then(profile => {
       res.json(profile);
     });
   });
 
   // LONG-TERM GOAL ROUTES
   // Get all long term goals
-  app.get(`/api/long-term`, isAuthenticated, (req, res) => {
-    db.LongTerms.findAll({
-      where: {
-        UserId: req.user.id
-      }
-    }).then(longTermGoals => {
-      res.json(longTermGoals);
-    });
-  });
+  // app.get(`/api/long-term`, isAuthenticated, (req, res) => {
+  //   db.LongTerms.findAll({
+  //     where: {
+  //       UserId: req.user.id
+  //     }
+  //   }).then(longTermGoals => {
+  //     res.json(longTermGoals);
+  //   });
+  // });
 
   // Get a specific long term goal
-  app.get(`/api/long-term/:id`, isAuthenticated, (req, res) => {
-    db.LongTerms.findOne({
-      where: {
-        UserId: req.user.id,
-        id: req.params.id
-      }
-    }).then(longTermGoal => {
-      res.json(longTermGoal);
-    });
-  });
+  // app.get(`/api/long-term/:id`, isAuthenticated, (req, res) => {
+  //   db.LongTerms.findOne({
+  //     where: {
+  //       UserId: req.user.id,
+  //       id: req.params.id
+  //     }
+  //   }).then(longTermGoal => {
+  //     res.json(longTermGoal);
+  //   });
+  // });
 
   // Create a new long-term goal
-  app.put(`/api/long-term`, isAuthenticated, (req, res) => {
-    db.LongTerms.create({
-      UserId: req.user.id,
-      title: req.body.title,
-      completedBy: req.body.completedBy,
-      description: req.body.description,
-      category: req.body.category
-    }).then(longTermGoal => {
-      res.json(longTermGoal);
-    });
-  });
+  // app.put(`/api/long-term`, isAuthenticated, (req, res) => {
+  //   db.LongTerms.create({
+  //     UserId: req.user.id,
+  //     title: req.body.title,
+  //     completedBy: req.body.completedBy,
+  //     description: req.body.description,
+  //     category: req.body.category
+  //   }).then(longTermGoal => {
+  //     res.json(longTermGoal);
+  //   });
+  // });
 
   // Update an existing long-term goal
-  app.post(`/api/long-term/:id`, isAuthenticated, (req, res) => {
-    db.LongTerms.update({
-      UserId: req.user.id,
-      title: req.body.title,
-      completedBy: req.body.completedBy,
-      description: req.body.description,
-      category: req.body.category
-    }, { where: { id: req.params.id } }).then(longTermGoal => {
-      res.json(longTermGoal);
-    });
-  });
+  // app.post(`/api/long-term/:id`, isAuthenticated, (req, res) => {
+  //   db.LongTerms.update({
+  //     UserId: req.user.id,
+  //     title: req.body.title,
+  //     completedBy: req.body.completedBy,
+  //     description: req.body.description,
+  //     category: req.body.category
+  //   }, { where: { id: req.params.id } }).then(longTermGoal => {
+  //     res.json(longTermGoal);
+  //   });
+  // });
 
   // Delete a long-term goal by id
-  app.delete(`/api/long-term/:id`, isAuthenticated, (req, res) => {
-    db.LongTerms.destroy({ where: { id: req.params.id } }).then(destroyed => {
-      res.json(destroyed);
-    });
-  });
+  // app.delete(`/api/long-term/:id`, isAuthenticated, (req, res) => {
+  //   db.LongTerms.destroy({ where: { id: req.params.id } }).then(destroyed => {
+  //     res.json(destroyed);
+  //   });
+  // });
 
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
