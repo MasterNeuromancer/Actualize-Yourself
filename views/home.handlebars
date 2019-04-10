@@ -62,8 +62,14 @@
             <div class="line"></div>
 
             <h2>Tasks</h2>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 301089e326a22c4c1f91650f93cd18932871efd3
             <ul>
+
                 {{#each tasks}}
+<<<<<<< HEAD
                 {{!-- <li><a href="#">{{task.name}}: </a>{{task.description}}</li> --}}
                 <div class="popup" onclick="myFunction()">{{tasks.name}}: <p>{{tasks.description}}</p>
                     <span class="popuptext" id="myPopup">
@@ -74,11 +80,31 @@
                             {{tasks.checkpoints}}
                         </li>
                         <a href="/long-term/{{tasks.id}}">(Edit)</a>
+=======
+                <div class="popup" id="myPopup-{{dataValues.id}}">
+                    <li><strong> <u>{{dataValues.title}}:</u></strong> {{dataValues.description}} </li>
+                    <span class="popuptext">
+                        <li><u>Task Name:</u> {{dataValues.title}}</li>
+                        <li><u>Description:</u> {{dataValues.description}}</li>
+                        <li><u>Complete By:</u> {{dataValues.completedBy}}</li>
+                        {{!-- <li>Checkpoints:
+                            {{tasks.checkpoints}}
+                        </li> --}}
+                        <a href="/long-term/{{dataValues.id}}">(Edit)</a>
+>>>>>>> 301089e326a22c4c1f91650f93cd18932871efd3
                     </span>
                 </div>
+                <br>
                 {{/each}}
             </ul>
 
+<<<<<<< HEAD
+=======
+            {{!-- <div class="popup">ckick me</div> --}}
+
+            <a href="/long-term">(Add A Long-Term Task)</a>
+
+>>>>>>> 301089e326a22c4c1f91650f93cd18932871efd3
             <div class="line"></div>
 
             <h2>What to watch out for!</h2>
@@ -94,4 +120,57 @@
         </div>
     </div>
 
+<<<<<<< HEAD
 </body>
+=======
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+    {{!--
+    <script src="/path/to/jquery.mCustomScrollbar.concat.min.js"></script> --}}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+
+            $(document).on("click", ".popup", function () {
+                var id = $(this).attr("id")
+                var popup = $(id);
+                popup.show();
+            });
+        });
+
+
+
+        $('#sidebarCollapse').on('click', function () {
+            // open or close navbar
+            $('#sidebar').toggleClass('active');
+            // close dropdowns
+            $('.collapse.in').toggleClass('in');
+            // and also adjust aria-expanded attributes we use for the open/closed arrows
+            // in our CSS
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+
+
+
+        function clickFunc() {
+            console.log(this)
+            var id = $(this).attr("id")
+            console.log(id)
+            var popup = document.getElementById(id);
+            popup.classList.toggle("show");
+        }
+
+    </script>
+</body>
+
+</html>
+>>>>>>> 301089e326a22c4c1f91650f93cd18932871efd3
