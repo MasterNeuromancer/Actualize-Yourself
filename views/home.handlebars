@@ -62,25 +62,9 @@
             <div class="line"></div>
 
             <h2>Tasks</h2>
-<<<<<<< HEAD
-=======
-
->>>>>>> 301089e326a22c4c1f91650f93cd18932871efd3
             <ul>
 
                 {{#each tasks}}
-<<<<<<< HEAD
-                {{!-- <li><a href="#">{{task.name}}: </a>{{task.description}}</li> --}}
-                <div class="popup" onclick="myFunction()">{{tasks.name}}: <p>{{tasks.description}}</p>
-                    <span class="popuptext" id="myPopup">
-                        <li>Task Name: {{tasks.name}}</li>
-                        <li>Description: {{tasks.description}}</li>
-                        <li>Complete By: {{tasks.date}}</li>
-                        <li>Checkpoints:
-                            {{tasks.checkpoints}}
-                        </li>
-                        <a href="/long-term/{{tasks.id}}">(Edit)</a>
-=======
                 <div class="popup" id="myPopup-{{dataValues.id}}">
                     <li><strong> <u>{{dataValues.title}}:</u></strong> {{dataValues.description}} </li>
                     <span class="popuptext">
@@ -91,20 +75,16 @@
                             {{tasks.checkpoints}}
                         </li> --}}
                         <a href="/long-term/{{dataValues.id}}">(Edit)</a>
->>>>>>> 301089e326a22c4c1f91650f93cd18932871efd3
                     </span>
                 </div>
                 <br>
                 {{/each}}
             </ul>
 
-<<<<<<< HEAD
-=======
             {{!-- <div class="popup">ckick me</div> --}}
 
             <a href="/long-term">(Add A Long-Term Task)</a>
 
->>>>>>> 301089e326a22c4c1f91650f93cd18932871efd3
             <div class="line"></div>
 
             <h2>What to watch out for!</h2>
@@ -120,9 +100,6 @@
         </div>
     </div>
 
-<<<<<<< HEAD
-</body>
-=======
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -173,4 +150,3 @@
 </body>
 
 </html>
->>>>>>> 301089e326a22c4c1f91650f93cd18932871efd3
