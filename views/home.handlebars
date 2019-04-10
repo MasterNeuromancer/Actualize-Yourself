@@ -36,23 +36,27 @@
             <div class="line"></div>
 
             <h2>Tasks</h2>
-            
+
             <ul>
+
                 {{#each tasks}}
-                <div class="popup" onclick="myFunction()"> 
-                    <p><strong> <u>{{tasks.title}}:</u></strong> {{tasks.description}} </p>
-                    <span class="popuptext" id="myPopup">
-                        <li><u>Task Name:</u> {{tasks.title}}</li>
-                        <li><u>Description:</u> {{tasks.description}}</li>
-                        <li><u>Complete By:</u> {{tasks.completedBy}}</li>
+                <div class="popup" id="myPopup-{{dataValues.id}}">
+                    <li><strong> <u>{{dataValues.title}}:</u></strong> {{dataValues.description}} </li>
+                    <span class="popuptext">
+                        <li><u>Task Name:</u> {{dataValues.title}}</li>
+                        <li><u>Description:</u> {{dataValues.description}}</li>
+                        <li><u>Complete By:</u> {{dataValues.completedBy}}</li>
                         {{!-- <li>Checkpoints:
                             {{tasks.checkpoints}}
                         </li> --}}
-                        <a href="/long-term/{{tasks.id}}">(Edit)</a>
+                        <a href="/long-term/{{dataValues.id}}">(Edit)</a>
                     </span>
                 </div>
+                <br>
                 {{/each}}
             </ul>
+
+            {{!-- <div class="popup">ckick me</div> --}}
 
             <a href="/long-term">(Add A Long-Term Task)</a>
 
@@ -80,17 +84,22 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
-    <script src="/path/to/jquery.mCustomScrollbar.concat.min.js"></script>
+    {{!--
+    <script src="/path/to/jquery.mCustomScrollbar.concat.min.js"></script> --}}
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
+
+            $(document).on("click", ".popup", function () {
+                var id = $(this).attr("id")
+                var popup = $(id);
+                popup.show();
+            });
         });
 
-        $("#sidebar").mCustomScrollbar({
-            theme: "minimal"
-        });
+
 
         $('#sidebarCollapse').on('click', function () {
             // open or close navbar
@@ -102,19 +111,16 @@
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         });
 
-        $(function () {
-            $.UDNZTimeline({
-                "data_url": "/test",
-                "container": {
-                    "id": "demo_1_container"
-                }
-            }).Draw(console.log("hit"));
-        });
 
-        function myFunction() {
-            var popup = document.getElementById("myPopup");
+
+        function clickFunc() {
+            console.log(this)
+            var id = $(this).attr("id")
+            console.log(id)
+            var popup = document.getElementById(id);
             popup.classList.toggle("show");
         }
+
     </script>
 </body>
 
