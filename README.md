@@ -1,13 +1,15 @@
-# node-handlebars-passport-boilerplate 🍽️
+﻿# Actualize Yourself, a task-mangement website
 
 ## Introduction
 
-This project is meant to be boilerplate for express, sequelize, handlebars, and passport.
+Unlike other task managers, Actualize Yourself is focused on the person, the process of improving, and long-term goals.
 
 
 ## Installation
 
-1. Create a mysql database called `exampledb`
+If you want to use our site as a boilerplate,
+
+1. Create a mysql database called `tasksDB`
 
 2. Update the `config.json` to match your local database, username, password
 
@@ -24,10 +26,10 @@ SERVER_SECRET = 123456
 
 ## Demo of this App
 
-You can find a demo of this app here:
+You can use our app here:
 
-https://node-passport-sequelize.herokuapp.com/
+Currently our app isn't deployed
 
-## GitHub for this App
+## GitHub for the Boilerplate we Used
 
 https://github.com/Travo100/project-two-starter-code-with-auth
