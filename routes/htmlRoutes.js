@@ -10,7 +10,7 @@ module.exports = app => {
       include: [db.LongTerms]
     }).then(dbUser => {
       // console.log(dbUser);
-      console.log(dbUser.LongTerms)
+      console.log(dbUser.LongTerms);
       res.render("home", { user: dbUser, tasks: dbUser.LongTerms });
     });
   });
@@ -26,9 +26,8 @@ module.exports = app => {
     db.Users.findOne({
       where: {
         id: req.user.id
-      }
-      // ,
-      // include: [db.LongTerms]
+      },
+      include: [db.LongTerms]
     }).then(dbUser => {
       res.render("profile", { user: dbUser });
     });
