@@ -58,22 +58,25 @@
             <div class="line"></div>
 
             <h2>Tasks</h2>
+            
             <ul>
                 {{#each tasks}}
-                {{!-- <li><a href="#">{{task.name}}: </a>{{task.description}}</li> --}}
-                <div class="popup" onclick="myFunction()">{{tasks.name}}: <p>{{tasks.description}}</p>
+                <div class="popup" onclick="myFunction()"> 
+                    <p><strong> <u>{{tasks.title}}:</u></strong> {{tasks.description}} </p>
                     <span class="popuptext" id="myPopup">
-                        <li>Task Name: {{tasks.name}}</li>
-                        <li>Description: {{tasks.description}}</li>
-                        <li>Complete By: {{tasks.date}}</li>
-                        <li>Checkpoints:
+                        <li><u>Task Name:</u> {{tasks.title}}</li>
+                        <li><u>Description:</u> {{tasks.description}}</li>
+                        <li><u>Complete By:</u> {{tasks.completedBy}}</li>
+                        {{!-- <li>Checkpoints:
                             {{tasks.checkpoints}}
-                        </li>
+                        </li> --}}
                         <a href="/long-term/{{tasks.id}}">(Edit)</a>
                     </span>
                 </div>
                 {{/each}}
             </ul>
+
+            <a href="/long-term">(Add A Long-Term Task)</a>
 
             <div class="line"></div>
 

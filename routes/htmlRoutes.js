@@ -3,6 +3,7 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = app => {
   // Home page
   app.get("/", isAuthenticated, (req, res) => {
+<<<<<<< HEAD
     db.Users.findOne({
       where: {
         id: req.user.id
@@ -10,6 +11,29 @@ module.exports = app => {
     }).then(dbUser => {
       res.render("home", { user: dbUser});
     });
+=======
+  db.Users.findOne({
+    where: {
+      id: req.user.id
+    },
+    include: [db.LongTerms]
+  }).then(dbUser => {
+    // console.log(dbUser);
+    console.log(dbUser.LongTerms[0])
+    res.render("home", { user: dbUser, tasks: dbUser.LongTerms[0].dataValues });
+
+
+
+
+
+    // WORK ON THIS CODE HERE ^^^^ HANNNAHHHHH 
+
+
+
+
+
+
+>>>>>>> 641d6c74649d299f2770d82c358a7dc44d09f9c3
   });
 
   // Load signup page
