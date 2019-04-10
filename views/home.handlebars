@@ -1,5 +1,28 @@
-<body>
+<head>
+    <link rel="stylesheet" href="timeline.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="timeline.js"></script>
+    <script>
+        $(function () {
+            $.UDNZTimeline({
+                "data_url": "data.json",
+                "container": {
+                    "id": "demo_3_container"
+                },
+                "effect": $.DEFINED_EFFECT_TYPE.rotateY | $.DEFINED_EFFECT_TYPE.slide
+            }).Draw().ShowNode('node_5', 300);
+        });
 
+
+        function myFunction() {
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+        }
+    </script>
+
+</head>
+
+<body>
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -21,14 +44,16 @@
             <a href="/profile">(Edit)</a>
         </nav>
 
-        <!-- Page Content  -->
+
+
         <div id="content">
-            <h2>Timeline</h2>
+            <section>
+                <h2>Timeline</h2>
 
-            <div id="demo_3_container"></div>
+                <div id="demo_3_container"></div>
 
-            <input type="button" value="Show the node!" onclick="line.ShowNode('node_5')" />
-            <input type="button" value="Hide it!" onclick="line.HideNode()" />
+            </section>
+
 
             <div class="line"></div>
 
@@ -65,54 +90,4 @@
         </div>
     </div>
 
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-        crossorigin="anonymous"></script>
-    <script src="/timeline.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        });
-
-        $("#sidebar").mCustomScrollbar({
-            theme: "minimal"
-        });
-
-        $('#sidebarCollapse').on('click', function () {
-            // open or close navbar
-            $('#sidebar').toggleClass('active');
-            // close dropdowns
-            $('.collapse.in').toggleClass('in');
-            // and also adjust aria-expanded attributes we use for the open/closed arrows
-            // in our CSS
-            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-        });
-
-        $(function () {
-            $.UDNZTimeline({
-                "data_url": "/test",
-                "container": {
-                    "id": "demo_1_container"
-                }
-            }).Draw(console.log("hit"));
-        });
-
-        function myFunction() {
-            var popup = document.getElementById("myPopup");
-            popup.classList.toggle("show");
-        }
-    </script>
 </body>
-
-</html>

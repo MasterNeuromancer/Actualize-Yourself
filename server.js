@@ -20,7 +20,7 @@ app.use(express.static("public"));
 // Morgan will any HTTP request to the terminal
 app.use(morgan("dev"));
 
-// We need to use sessions to keep track of our user's login status
+// We need to use sessions to keep track of our user's login statuss
 app.use(
   session({
     secret: process.env.SERVER_SECRET,
