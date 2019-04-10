@@ -24,8 +24,8 @@ var handleFormSubmit = function(event) {
   var user = {
     name: $name.val().trim(),
     nouns: $what.val().trim(),
-    verbs:$who.val().trim(),
-    adjectives: $enjoy.val().trim()
+    verbs:$enjoy.val().trim(),
+    adjectives: $who.val().trim()
   };
 
   if (!(user.name)) {

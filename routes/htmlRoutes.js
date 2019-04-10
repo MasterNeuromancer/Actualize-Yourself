@@ -3,14 +3,26 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = app => {
   // Home page
   app.get("/", isAuthenticated, (req, res) => {
-    db.Users.findOne({
-      where: {
-        id: req.user.id
-      },
-      include: [db.LongTerms]
-    }).then(dbUser => {
-      res.render("home", { user: dbUser });
-    });
+  db.Users.findOne({
+    where: {
+      id: req.user.id
+    },
+    include: [db.LongTerms]
+  }).then(dbUser => {
+    console.log(dbUser);
+    res.render("home", { user: dbUser, tasks: dbUser.LongTerms });
+
+
+
+
+
+    // WORK ON THIS CODE HERE ^^^^ HANNNAHHHHH 
+
+
+
+
+
+    
   });
 
   // Load signup page
@@ -40,7 +52,7 @@ module.exports = app => {
   app.get("/long-term/:id", isAuthenticated, (req, res) => {
     db.LongTerms.findOne({ where: { id: req.params.id } }).then(longTerm => {
       res.render("long-term", {
-        longTerm: longTerm
+        longterm: longTerm
       });
     });
   });

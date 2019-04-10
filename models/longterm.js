@@ -1,9 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   const LongTerms = sequelize.define("LongTerms", {
     title: DataTypes.STRING,
+    category: DataTypes.STRING,
     completedBy: DataTypes.DATE,
-    description: DataTypes.TEXT,
-    category: DataTypes.STRING
+    description: DataTypes.STRING,
+    details: DataTypes.TEXT
   });
 
   LongTerms.associate = function (models) {

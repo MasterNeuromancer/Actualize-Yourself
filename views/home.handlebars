@@ -4,91 +4,25 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>User Profile</h3>
-                <strong>Profile</strong>
+                <h3>{{user.name}}</h3>
             </div>
-
             <ul class="list-unstyled components">
                 <li class="active">
-                    <h3>UserProfile1</h3>
                     <br>
-                    A:
-                    <ul id="nounList">
-
-                        <li>
-                            <p href="#">Alien</p>
-                        </li>
-                        <li>
-                            <p href="#">Scientist</p>
-                        </li>
-                        <li>
-                            <p href="#">Astronaut</p>
-                        </li>
-                    </ul>
+                    A: <p class="list">{{user.nouns}}</p>
                 </li>
                 <li>
-                    {{!-- <a href="#">
-                        <i class="fas fa-briefcase"></i>
-                        About
-                    </a>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-copy"></i>
-                        Pages
-                    </a> --}}
-                    Who is:
-                    <ul id="adjList">
-                        <li>
-                            <p>Kind</p>
-                        </li>
-                        <li>
-                            <p>Peaceful</p>
-                        </li>
-                        <li>
-                            <p>Intelligent</p>
-                        </li>
-                    </ul>
+                    Who is: <p class="list">{{user.adjectives}}</p>
                 </li>
-                {{!-- <li>
-                    <a href="#">
-                        <i class="fas fa-image"></i>
-                        Portfolio
-                    </a>
-                </li> --}}
                 <li>
-                    And does:
-                    <ul id="verbList">
-                        <li>
-                            <p>Interstellar Travel</p>
-                        </li>
-                        <li>
-                            <p>Research</p>
-                        </li>
-                        <li>
-                            <p>Gardening</p>
-                        </li>
-                    </ul>
+                    And enjoys: <p class="list">{{user.verbs}}</p>
                 </li>
             </ul>
+            <a href="/profile">(Edit)</a>
         </nav>
 
         <!-- Page Content  -->
         <div id="content">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
-                        <span>Toggle Sidebar</span>
-                    </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
-                </div>
-            </nav>
-
             <h2>Timeline</h2>
 
             <div id="demo_3_container"></div>
@@ -96,13 +30,25 @@
             <input type="button" value="Show the node!" onclick="line.ShowNode('node_5')" />
             <input type="button" value="Hide it!" onclick="line.HideNode()" />
 
+            <div class="line"></div>
+
             <h2>Tasks</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</p>
+            <ul>
+                {{#each tasks}}
+                {{!-- <li><a href="#">{{task.name}}: </a>{{task.description}}</li> --}}
+                <div class="popup" onclick="myFunction()">{{tasks.name}}: <p>{{tasks.description}}</p>
+                    <span class="popuptext" id="myPopup">
+                        <li>Task Name: {{tasks.name}}</li>
+                        <li>Description: {{tasks.description}}</li>
+                        <li>Complete By: {{tasks.date}}</li>
+                        <li>Checkpoints:
+                            {{tasks.checkpoints}}
+                        </li>
+                        <a href="/long-term/{{tasks.id}}">(Edit)</a>
+                    </span>
+                </div>
+                {{/each}}
+            </ul>
 
             <div class="line"></div>
 
@@ -133,14 +79,39 @@
         crossorigin="anonymous"></script>
     <script src="/timeline.js"></script>
     <script type="text/javascript">
-        var line = $.UDNZTimeline({
-            "data_url": "data.json",
-            "container": {
-                "id": "demo_3_container",
-                "height": 350
-            },
-            "effect": $.DEFINED_EFFECT_TYPE.rotateY | $.DEFINED_EFFECT_TYPE.slide
-        }).Draw().ShowNode('node_5', 500);
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            // open or close navbar
+            $('#sidebar').toggleClass('active');
+            // close dropdowns
+            $('.collapse.in').toggleClass('in');
+            // and also adjust aria-expanded attributes we use for the open/closed arrows
+            // in our CSS
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+
+        $(function () {
+            $.UDNZTimeline({
+                "data_url": "/test",
+                "container": {
+                    "id": "demo_1_container"
+                }
+            }).Draw(console.log("hit"));
+        });
+
+        function myFunction() {
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+        }
     </script>
 </body>
 
