@@ -1,6 +1,6 @@
 var $title = $("#title");
 var $description = $("#description");
-var $completedBy = $("#completedBy");
+var $completedBy = $("#completedBy").flatpickr({ minDate: "today" });;
 var $details = $("#details");
 
 
