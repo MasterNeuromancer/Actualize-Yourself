@@ -30,13 +30,15 @@ module.exports = app => {
 
   // Update their profile (created with signup)
   app.put("/api/profile", isAuthenticated, (req, res) => {
-    db.Users.update({
-      name: req.body.name,
-      nouns: req.body.nouns,
-      adjectives: req.body.adjectives,
-      verbs: req.body.verbs
-    }, { where: { id: req.user.id }})
-    .then(profile => {
+    db.Users.update(
+      {
+        name: req.body.name,
+        nouns: req.body.nouns,
+        adjectives: req.body.adjectives,
+        verbs: req.body.verbs
+      },
+      { where: { id: req.user.id } }
+    ).then(profile => {
       res.json(profile);
     });
   });
@@ -72,6 +74,7 @@ module.exports = app => {
       title: req.body.title,
       completedBy: req.body.completedBy,
       description: req.body.description,
+      details: req.body.details,
       category: req.body.category
     }).then(longTermGoal => {
       res.json(longTermGoal);

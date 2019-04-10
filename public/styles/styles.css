@@ -69,7 +69,7 @@ span {
 }
 .wrapper {
     display: flex;
-    align-items: stretch;
+    align-items: center;
     text-align: center;
 }
 
@@ -230,6 +230,8 @@ a {
 #moveme {
     float: right;
 }
+
+
 
 /* ---------------------------------------------------
     MEDIAQUERIES

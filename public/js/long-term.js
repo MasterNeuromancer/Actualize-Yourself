@@ -1,33 +1,19 @@
 var $title = $("#title");
 var $description = $("#description");
-var $completedBy = $("#completedBy");
+var $completedBy = flatpickr($("#completedBy"), { minDate: "today" });;
 var $details = $("#details");
 
-
-var API = {
-  saveGoal: function(goal) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "PUT",
-      url: "/api/long-term",
-      data: JSON.stringify(goal)
-    });
-  },
-};
-
-var handleFormSubmit = function(event) {
+var handleFormSubmit = function (event) {
   event.preventDefault();
 
   var goal = {
     title: $title.val().trim(),
     description: $description.val().trim(),
-    completedBy: $completedBy.val().trim(),
+    completedBy: $completedBy.selectedDates[0],
     details: $details.val().trim()
   };
 
-  if (!(goal.title) || !(goal.description) || !(goal.completedBy) ) {
+  if (!(goal.title) || !(goal.description) || !(goal.completedBy)) {
     alert("Please submit a complete goal.");
     return;
   }
@@ -36,7 +22,14 @@ var handleFormSubmit = function(event) {
     window.location.replace("/");
   }
 
-  API.saveGoal(goal).then(function(){
+  $.ajax({
+    headers: {
+      "Content-Type": "application/json"
+    },
+    type: "PUT",
+    url: "/api/long-term",
+    data: JSON.stringify(goal)
+  }).then(function () {
     console.log("GOT HERE");
     redirect();
   });
