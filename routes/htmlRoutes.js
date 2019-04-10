@@ -10,20 +10,8 @@ module.exports = app => {
     include: [db.LongTerms]
   }).then(dbUser => {
     // console.log(dbUser);
-    console.log(dbUser.LongTerms[0])
-    res.render("home", { user: dbUser, tasks: dbUser.LongTerms[0].dataValues });
-
-
-
-
-
-    // WORK ON THIS CODE HERE ^^^^ HANNNAHHHHH 
-
-
-
-
-
-
+    console.log(dbUser.LongTerms)
+    res.render("home", { user: dbUser, tasks: dbUser.LongTerms });
   });
 });
 
