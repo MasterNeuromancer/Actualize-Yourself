@@ -9,8 +9,9 @@ module.exports = app => {
     },
     include: [db.LongTerms]
   }).then(dbUser => {
-    console.log(dbUser);
-    res.render("home", { user: dbUser, tasks: dbUser.LongTerms });
+    // console.log(dbUser);
+    console.log(dbUser.LongTerms[0])
+    res.render("home", { user: dbUser, tasks: dbUser.LongTerms[0].dataValues });
 
 
 
@@ -22,7 +23,7 @@ module.exports = app => {
 
 
 
-    
+
   });
 });
 
