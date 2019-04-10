@@ -72,6 +72,7 @@ module.exports = app => {
       title: req.body.title,
       completedBy: req.body.completedBy,
       description: req.body.description,
+      details: req.body.details,
       category: req.body.category
     }).then(longTermGoal => {
       res.json(longTermGoal);
