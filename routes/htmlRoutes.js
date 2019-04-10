@@ -26,9 +26,8 @@ module.exports = app => {
     db.Users.findOne({
       where: {
         id: req.user.id
-      }
-      // ,
-      // include: [db.LongTerms]
+      },
+      include: [db.LongTerms]
     }).then(dbUser => {
       res.render("profile", { user: dbUser });
     });
