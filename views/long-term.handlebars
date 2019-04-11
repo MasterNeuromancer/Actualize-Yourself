@@ -9,8 +9,8 @@
             </div>
             <h3>Remember SMART goals are Specific, Measurable, Achievable, Relevant, and Timely
             </h3>
-            <div class="form-group">
-                <input class="form-control" id="id" type="hidden">{{longterm.id}}</input>
+            <div class="form-group" style="display: none">
+                <input class="form-control" id="id" value="{{longterm.id}}" />
             </div>
             {{!-- A section for category, to be added --}}
             <div class="form-group">
@@ -29,7 +29,7 @@
                     placeholder="My training regimen will be: ......">{{longterm.details}}</textarea>
             </div>
             <div class="form-group form-check" {{#unless longterm}}style="display: none"{{/unless}}>
-                <input type="checkbox" class="form-check-input" id="finished">
+                <input type="checkbox" class="form-check-input" id="finished" {{#if longterm.finished}}checked{{/if}}>
                 <label class="form-check-label" for="finished">Goal Achieved!</label>
             </div>
             <button id="submitgoal" class="btn btn-primary float-right">Submit</button>
@@ -54,7 +54,7 @@
             description: $description.val().trim(),
             completedBy: $completedBy.selectedDates[0],
             details: $details.val().trim(),
-            finished: $finished.val()
+            finished: ($finished.val() === "on") ? true : false
         };
 
         if (!(goal.title) || !(goal.description) || !(goal.completedBy)) {
@@ -66,7 +66,7 @@
             window.location.replace("/");
         }
 
-        if ($id.val() === undefined || $id.val() === "") {
+        if ($id.val() === undefined || $id.val().trim() === "") {
             $.ajax({
                 headers: {
                     "Content-Type": "application/json"
@@ -84,9 +84,9 @@
                     "Content-Type": "application/json"
                 },
                 type: "PUT",
-                url: `/api/long-term/${$id}`,
+                url: `/api/long-term/${$id.val().trim()}`,
                 data: JSON.stringify(goal)
-            }, { where: { id: $id } }).then(function () {
+            }, { where: { id: $id.val().trim() } }).then(function () {
                 console.log("GOT HERE");
                 redirect();
             });
