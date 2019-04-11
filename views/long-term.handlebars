@@ -28,8 +28,8 @@
                 <textarea class="form-control" id="details" aria-describedby="do-description"
                     placeholder="My training regimen will be: ......">{{longterm.details}}</textarea>
             </div>
-            <div class="form-group form-check">
-                <input type="checkbox{{#unless longterm}} hidden{{/unless}}" class="form-check-input" id="finished">
+            <div class="form-group form-check" {{#unless longterm}}style="display: none"{{/unless}}>
+                <input type="checkbox" class="form-check-input" id="finished">
                 <label class="form-check-label" for="finished">Goal Achieved!</label>
             </div>
             <button id="submitgoal" class="btn btn-primary float-right">Submit</button>
@@ -66,12 +66,12 @@
             window.location.replace("/");
         }
 
-        if ($id === undefined) {
+        if ($id.val() === undefined || $id.val() === "") {
             $.ajax({
                 headers: {
                     "Content-Type": "application/json"
                 },
-                type: "PUT",
+                type: "POST",
                 url: "/api/long-term",
                 data: JSON.stringify(goal)
             }).then(function () {
@@ -83,10 +83,10 @@
                 headers: {
                     "Content-Type": "application/json"
                 },
-                type: "POST",
+                type: "PUT",
                 url: `/api/long-term/${$id}`,
                 data: JSON.stringify(goal)
-            } { where: { id: $id } }).then(function () {
+            }, { where: { id: $id } }).then(function () {
                 console.log("GOT HERE");
                 redirect();
             });
