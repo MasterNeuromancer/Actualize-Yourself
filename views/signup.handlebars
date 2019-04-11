@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-md-12">
-        <h1>Sign Up Page</h1>
+        <h1 id="titleme">Sign Up Page</h1>
     </div>
 </div>
-<div class="row">
+<div id="loginbox" class="row">
     <div class="col-md-12">
         <form id="user-sign-up">
             <div class="form-group">
@@ -15,7 +15,18 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" class="form-control" id="password" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div id="buttons">
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+                <button id="login" class="btn">Login</button>
+            </div>
+
         </form>
     </div>
 </div>
+
+<script>
+    $("#login").click(function () {
+        window.location.replace("/login");
+    })
+</script>
