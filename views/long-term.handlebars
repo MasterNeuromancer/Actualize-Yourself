@@ -54,7 +54,7 @@
             description: $description.val().trim(),
             completedBy: $completedBy.selectedDates[0],
             details: $details.val().trim(),
-            finished: $finished.val()
+            finished: ($finished.val() === "on") ? true : false
         };
 
         if (!(goal.title) || !(goal.description) || !(goal.completedBy)) {
@@ -66,7 +66,7 @@
             window.location.replace("/");
         }
 
-        if ($id.val() === undefined || $id.val() === "") {
+        if ($id.val() === undefined || $id.val().trim() === "") {
             $.ajax({
                 headers: {
                     "Content-Type": "application/json"
@@ -84,9 +84,9 @@
                     "Content-Type": "application/json"
                 },
                 type: "PUT",
-                url: `/api/long-term/${$id}`,
+                url: `/api/long-term/${$id.val().trim()}`,
                 data: JSON.stringify(goal)
-            }, { where: { id: $id } }).then(function () {
+            }, { where: { id: $id.val().trim() } }).then(function () {
                 console.log("GOT HERE");
                 redirect();
             });
