@@ -68,27 +68,29 @@ module.exports = app => {
   });
 
   // Create a new long-term goal
-  app.put(`/api/long-term`, isAuthenticated, (req, res) => {
+  app.post(`/api/long-term`, isAuthenticated, (req, res) => {
     db.LongTerms.create({
       UserId: req.user.id,
       title: req.body.title,
       completedBy: req.body.completedBy,
       description: req.body.description,
       details: req.body.details,
-      category: req.body.category
+      category: req.body.category,
+      finished: false
     }).then(longTermGoal => {
       res.json(longTermGoal);
     });
   });
 
   // Update an existing long-term goal
-  app.post(`/api/long-term/:id`, isAuthenticated, (req, res) => {
+  app.put(`/api/long-term/:id`, isAuthenticated, (req, res) => {
     db.LongTerms.update({
       UserId: req.user.id,
       title: req.body.title,
       completedBy: req.body.completedBy,
       description: req.body.description,
-      category: req.body.category
+      category: req.body.category,
+      finished: req.body.finished
     }, { where: { id: req.params.id } }).then(longTermGoal => {
       res.json(longTermGoal);
     });
