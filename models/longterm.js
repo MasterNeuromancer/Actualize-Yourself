@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     category: DataTypes.STRING,
     completedBy: DataTypes.DATE,
     description: DataTypes.STRING,
-    details: DataTypes.TEXT
+    details: DataTypes.TEXT,
+    finished: { type: DataTypes.BOOL, defaultValue: false }
   });
 
   LongTerms.associate = function (models) {
