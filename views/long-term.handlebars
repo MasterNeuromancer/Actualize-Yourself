@@ -29,7 +29,7 @@
                     placeholder="My training regimen will be: ......">{{longterm.details}}</textarea>
             </div>
             <div class="form-group form-check" {{#unless longterm}}style="display: none"{{/unless}}>
-                <input type="checkbox" class="form-check-input" id="finished">
+                <input type="checkbox" class="form-check-input" id="finished" {{#if longterm.finished}}checked{{/if}}>
                 <label class="form-check-label" for="finished">Goal Achieved!</label>
             </div>
             <button id="submitgoal" class="btn btn-primary float-right">Submit</button>
