@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
+const moment = require("moment");
 
 const db = require("./models");
 
@@ -31,13 +32,21 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+const hbs = exphbs.create({
+  // Specify helpers which are only registered on this instance.
+  helpers: {
+    showStatus: function (bool) {
+      return JSON.parse(bool) ? "Complete" : "In Progress";
+    },
+    showDate: function (date) {
+      return moment(date).format('YYYY-MM-DD');
+    }
+  },
+  defaultLayout: "main"
+});
+
 // Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 // Routes
