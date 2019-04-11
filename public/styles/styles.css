@@ -120,7 +120,7 @@ a {
 #nav {
     display: flex;
     justify-content: space-between;
-    border-bottom: solid 2px;
+    border-bottom: solid 1px;
     height: 60px;
     background-color: lightsteelblue;
     padding-left: 100px;

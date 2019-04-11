@@ -335,7 +335,8 @@
                                     </div>
                                     <div class="modal-body">
                                         <u>Description:</u> {{dataValues.description}} <br>
-                                        <u>Complete By:</u> {{dataValues.completedBy}}
+                                        <u>Complete By:</u> {{showDate dataValues.completedBy}} <br>
+                                        <u>Status:</u> {{showStatus dataValues.finished}}
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary editButton">
