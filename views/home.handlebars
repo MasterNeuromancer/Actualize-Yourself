@@ -1,5 +1,7 @@
 <head>
     <script src="//code.jquery.com/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+        crossorigin="anonymous">
     <script src="timeline.js"></script>
     <script>
         $(function () {
@@ -277,11 +279,11 @@
         }
     </style>
     <div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>{{user.name}}</h3>
-            </div>
+
+        <div id="profilesection">
+            <h3 id="name">{{user.name}}</h3>
+            <div class="line"></div>
+
             <ul class="list-unstyled components">
                 <li class="active">
                     <br>
@@ -294,76 +296,76 @@
                     And enjoys: <p class="list">{{user.verbs}}</p>
                 </li>
             </ul>
-            <a href="/profile">(Edit)</a>
-        </nav>
+
+            <a id="moveme" href="/profile"><i class="fas fa-user-edit"></i></a>
+        </div>
+
 
 
 
         <div id="content">
-            
-            <section class="Timeline">
+
+            <section id="timeline" class="section">
                 <h2>Timeline</h2>
 
                 <div id="demo_3_container"></div>
 
             </section>
 
+            <div id="tasks" class="section">
+                <h2>My Tasks</h2>
+                <ol>
+                    {{#each tasks}}
+                    <li>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodel-{{dataValues.id}}"
+                            style="color: black;background-color: white; border: white;">
+                            {{dataValues.title}}
+                        </button>
 
-            <div class="line"></div>
-
-            <h2>Tasks</h2>
-            <ol>
-                {{#each tasks}}
-                <li>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodel-{{dataValues.id}}" style="color: black;background-color: white; border: white;">
-                    {{dataValues.title}}
-                </button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="mymodel-{{dataValues.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">{{dataValues.title}}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <u>Description:</u> {{dataValues.description}} <br>
-                                <u>Complete By:</u> {{dataValues.completedBy}}
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary editButton">
-                                    <a href="/long-term/{{dataValues.id}}">Edit</a>
-                                </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="mymodel-{{dataValues.id}}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenterTitle">{{dataValues.title}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <u>Description:</u> {{dataValues.description}} <br>
+                                        <u>Complete By:</u> {{dataValues.completedBy}}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary editButton">
+                                            <a href="/long-term/{{dataValues.id}}"><i class="far fa-edit"></i></a>
+                                        </button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                        <br>
+                        <br>
+                    </li>
+                    {{/each}}
+                </ol>
+
+
+                <a id="moveme" href="/long-term"><i id="plus" class="fas fa-plus-square"></i></a>
                 <br>
-                <br>
-                </li>
-                {{/each}}
-            </ol>
+            </div>
 
-
-            <a id="moveme" href="/long-term">(Add A Long-Term Task)</a>
-            <br>
-
-            <div class="line"></div>
-
-            <h2>What to watch out for!</h2>
+            {{!-- <h2>What to watch out for!</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
                 eu
                 fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</p>
+                deserunt mollit anim id est laborum.</p> --}}
 
-            <div class="line"></div>
+            {{!-- <div class="line"></div> --}}
 
         </div>
     </div>
@@ -372,31 +374,6 @@
     {{!--
     <script src="/path/to/jquery.mCustomScrollbar.concat.min.js"></script> --}}
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        });
-
-
-
-        $('#sidebarCollapse').on('click', function () {
-            // open or close navbar
-            $('#sidebar').toggleClass('active');
-            // close dropdowns
-            $('.collapse.in').toggleClass('in');
-            // and also adjust aria-expanded attributes we use for the open/closed arrows
-            // in our CSS
-            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-        });
-
-        {
-            {
-                !--$(function () {
-                    $('[data-toggle="popover"]').popover()
-                }) --}
-        }
-
         $('#myModal').on('shown.bs.modal', function () {
             $('#myInput').trigger('focus')
         })
