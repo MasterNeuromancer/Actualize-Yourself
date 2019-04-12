@@ -10,7 +10,7 @@
             <h3>Remember SMART goals are Specific, Measurable, Achievable, Relevant, and Timely
             </h3>
             <div class="form-group" style="display: none">
-                <input class="form-control" id="nodeId" value="{{longterm.nodeId}}" />
+                <input class="form-control" id="id" value="{{longterm.id}}" />
             </div>
             {{!-- A section for category, to be added --}}
             <div class="form-group">
@@ -21,7 +21,7 @@
             <div class="form-group">
                 <label for="completedBy">When is the soonest you could reasonably achieve this goal?</label>
                 <input class="form-control" id="completedBy" type="text" aria-describedby="who-description"
-                    placeholder="Select your Date..." value="{{showDate longterm.date}}" />
+                    placeholder="Select your Date..." value="{{showDate longterm.completedBy}}" />
             </div>
             <div class="form-group">
                 <label for="details">How do you plan to get there? Any additional notes can go here.</label>
@@ -39,34 +39,29 @@
 </div>
 
 <script type="text/javascript">
-    var $nodeId = $("#nodeId");
+    var $id = $("#id");
     var $title = $("#title");
     var $description = $("#description");
     var $completedBy = flatpickr($("#completedBy"), { minDate: "today" });;
     var $details = $("#details");
     var $finished = $("#finished");
-
     var handleFormSubmit = function (event) {
         event.preventDefault();
-
         var goal = {
             title: $title.val().trim(),
             description: $description.val().trim(),
-            date: $completedBy.selectedDates[0],
+            completedBy: $completedBy.selectedDates[0],
             details: $details.val().trim(),
             finished: ($finished.val() === "on") ? true : false
         };
-
-        if (!(goal.title) || !(goal.description) || !(goal.date)) {
+        if (!(goal.title) || !(goal.description) || !(goal.completedBy)) {
             alert("Please submit a complete goal.");
             return;
         }
-
         function redirect() {
             window.location.replace("/");
         }
-
-        if ($nodeId.val() === undefined || $nodeId.val().trim() === "") {
+        if ($id.val() === undefined || $id.val().trim() === "") {
             $.ajax({
                 headers: {
                     "Content-Type": "application/json"
@@ -84,15 +79,13 @@
                     "Content-Type": "application/json"
                 },
                 type: "PUT",
-                url: `/api/long-term/${$nodeId.val().trim()}`,
+                url: `/api/long-term/${$id.val().trim()}`,
                 data: JSON.stringify(goal)
-            }, { where: { nodeId: $nodeId.val().trim() } }).then(function () {
+            }, { where: { id: $id.val().trim() } }).then(function () {
                 console.log("GOT HERE");
                 redirect();
             });
         }
     };
-
     $("#submitgoal").on("click", handleFormSubmit);
-
 </script>
