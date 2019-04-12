@@ -1,3 +1,4 @@
+const fs = require("fs");
 const db = require("../models");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = app => {
@@ -10,8 +11,20 @@ module.exports = app => {
       include: [db.LongTerms]
     }).then(dbUser => {
       // console.log(dbUser);
-      console.log(dbUser.LongTerms);
-      res.render("home", { user: dbUser, tasks: dbUser.LongTerms });
+      let percent = 10;
+      let newNodes = dbUser.LongTerms.map(item => {
+        percent += 10;
+        item.percent = percent;
+        return item;
+      });
+      var nodeData = JSON.stringify({nodes: newNodes});
+      fs.writeFile("./public/js/data2.json", nodeData, err => {
+        if (err) {
+          throw err;
+        }
+        // console.log(nodeData);
+        res.render("home", { user: dbUser, tasks: dbUser.LongTerms });
+      });
     });
   });
 
@@ -39,8 +52,8 @@ module.exports = app => {
   });
 
   // Get form for updating a long-term goal
-  app.get("/long-term/:id", isAuthenticated, (req, res) => {
-    db.LongTerms.findOne({ where: { id: req.params.id } }).then(longTerm => {
+  app.get("/long-term/:nodeId", isAuthenticated, (req, res) => {
+    db.LongTerms.findOne({ where: { nodeId: req.params.nodeId } }).then(longTerm => {
       res.render("long-term", {
         longterm: longTerm
       });

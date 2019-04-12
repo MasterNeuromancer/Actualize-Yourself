@@ -45,10 +45,8 @@
     var $completedBy = flatpickr($("#completedBy"), { minDate: "today" });;
     var $details = $("#details");
     var $finished = $("#finished");
-
     var handleFormSubmit = function (event) {
         event.preventDefault();
-
         var goal = {
             title: $title.val().trim(),
             description: $description.val().trim(),
@@ -56,16 +54,13 @@
             details: $details.val().trim(),
             finished: ($finished.val() === "on") ? true : false
         };
-
         if (!(goal.title) || !(goal.description) || !(goal.completedBy)) {
             alert("Please submit a complete goal.");
             return;
         }
-
         function redirect() {
             window.location.replace("/");
         }
-
         if ($id.val() === undefined || $id.val().trim() === "") {
             $.ajax({
                 headers: {
@@ -92,7 +87,5 @@
             });
         }
     };
-
     $("#submitgoal").on("click", handleFormSubmit);
-
 </script>
