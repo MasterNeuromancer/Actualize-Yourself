@@ -5,24 +5,9 @@
 Unlike other task managers, Actualize Yourself is focused on the person, the process of improving, and long-term goals.
 
 
-## Installation
+## About this app and its Creation
 
-If you want to use our site as a boilerplate,
-
-1. Create a mysql database called `tasksDB`
-
-2. Update the `config.json` to match your local database, username, password
-
-3. Add a `.env` at the top level of this project. 
-
-4. Then inside of the .env add a SERVER_SECRET set to any value you'd like
-```
-SERVER_SECRET = 123456
-```
-
-5. `npm install`
-
-6. `node server.js`
+[Look at this SlideShow if you want to know more](https://docs.google.com/presentation/d/1e3iIwHryFfxXf5ILpzLuMN0F3iK7SFhL08AH5aXK-rQ/edit#slide=id.p)
 
 ## Demo of this App
 

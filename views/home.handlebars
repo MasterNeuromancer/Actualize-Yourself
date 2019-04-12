@@ -6,7 +6,7 @@
     <script>
         $(function () {
             $.UDNZTimeline({
-                "data_url": "/js/data.json",
+                "data_url": "/js/data2.json",
                 "container": {
                     "id": "demo_3_container"
                 },
@@ -317,13 +317,13 @@
                 <ol>
                     {{#each tasks}}
                     <li>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodel-{{dataValues.id}}"
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodel-{{dataValues.nodeId}}"
                             style="color: black;background-color: white; border: white;">
-                            {{dataValues.title}}
+                            {{dataValues.title}}    
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="mymodel-{{dataValues.id}}" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="mymodel-{{dataValues.nodeId}}" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
@@ -340,7 +340,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary editButton">
-                                            <a href="/long-term/{{dataValues.id}}"><i class="far fa-edit"></i></a>
+                                            <a href="/long-term/{{dataValues.nodeId}}"><i class="far fa-edit"></i></a>
                                         </button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>

@@ -1,8 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   const LongTerms = sequelize.define("LongTerms", {
+    nodeId: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     title: DataTypes.STRING,
-    category: DataTypes.STRING,
-    completedBy: DataTypes.DATE,
+    date: DataTypes.DATE,
+    percent: DataTypes.INTEGER,
     description: DataTypes.STRING,
     details: DataTypes.TEXT,
     finished: { type: DataTypes.BOOLEAN, defaultValue: false }
