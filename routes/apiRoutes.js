@@ -56,11 +56,11 @@ module.exports = app => {
   });
 
   // Get a specific long term goal
-  app.get(`/api/long-term/:id`, isAuthenticated, (req, res) => {
+  app.get(`/api/long-term/:nodeId`, isAuthenticated, (req, res) => {
     db.LongTerms.findOne({
       where: {
         UserId: req.user.id,
-        id: req.params.id
+        nodeId: req.params.nodeId
       }
     }).then(longTermGoal => {
       res.json(longTermGoal);
@@ -72,7 +72,7 @@ module.exports = app => {
     db.LongTerms.create({
       UserId: req.user.id,
       title: req.body.title,
-      completedBy: req.body.completedBy,
+      date: req.body.completedBy,
       description: req.body.description,
       details: req.body.details,
       category: req.body.category,
@@ -83,7 +83,7 @@ module.exports = app => {
   });
 
   // Update an existing long-term goal
-  app.put(`/api/long-term/:id`, isAuthenticated, (req, res) => {
+  app.put(`/api/long-term/:nodeId`, isAuthenticated, (req, res) => {
     db.LongTerms.update({
       UserId: req.user.id,
       title: req.body.title,
@@ -91,14 +91,14 @@ module.exports = app => {
       description: req.body.description,
       category: req.body.category,
       finished: req.body.finished
-    }, { where: { id: req.params.id } }).then(longTermGoal => {
+    }, { where: { nodeId: req.params.nodeId } }).then(longTermGoal => {
       res.json(longTermGoal);
     });
   });
 
   // Delete a long-term goal by id
-  app.delete(`/api/long-term/:id`, isAuthenticated, (req, res) => {
-    db.LongTerms.destroy({ where: { id: req.params.id } }).then(destroyed => {
+  app.delete(`/api/long-term/:nodeId`, isAuthenticated, (req, res) => {
+    db.LongTerms.destroy({ where: { id: req.params.nodeId } }).then(destroyed => {
       res.json(destroyed);
     });
   });
