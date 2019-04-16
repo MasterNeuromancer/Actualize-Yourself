@@ -87,7 +87,7 @@ module.exports = app => {
     db.LongTerms.update({
       UserId: req.user.id,
       title: req.body.title,
-      completedBy: req.body.completedBy,
+      date: req.body.completedBy,
       description: req.body.description,
       category: req.body.category,
       finished: req.body.finished
