@@ -38,9 +38,9 @@ module.exports = app => {
       include: [db.LongTerms]
     }).then(dbUser => {
       // console.log(dbUser);
-      const farthestOut = findFarthestDate(dbUser.LongTerms);
+      const farthestOut = findFarthestDate(dbUser.LongTerms).diff(moment(), 'days');
       let newNodes = dbUser.LongTerms.map(item => {
-        item.percent = percentOfFarthest(farthestOut, item);
+        item.percent = percentOfFarthest(farthestOut, item) * 100;
         return item;
       });
       var nodeData = JSON.stringify({nodes: newNodes});

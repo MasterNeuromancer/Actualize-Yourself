@@ -39,7 +39,6 @@ const hbs = exphbs.create({
       return JSON.parse(bool) ? "Complete" : "In Progress";
     },
     showDate: function (date) {
-      console.log(date);
       return moment(date).format('YYYY-MM-DD');
     }
   },
