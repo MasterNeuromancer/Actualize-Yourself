@@ -1,6 +1,33 @@
 const fs = require("fs");
 const db = require("../models");
+const moment = require("moment");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
+
+// Two helper functions, comparing dates for the timeline
+const findFarthestDate = function(datedArray) {
+  let farthestOut = moment();
+  datedArray.forEach(element => {
+    // If farthest isn't after this date, then this date is farther
+    if(!farthestOut.isAfter(element.date)) {
+      farthestOut = moment(element.date);
+    }
+  });
+  console.log(farthestOut);
+  return farthestOut;
+}
+
+const percentOfFarthest = function(farthestOut, item) {
+  const today = moment();
+  let daysOut;
+  if(today.isAfter(item.date)) {
+    return 0;
+  } else {
+    daysOut = moment(item.date).diff(today, 'days');
+  }
+  // Goals to be completed at the past are shown at 0
+  return (daysOut < 0) ? 0 : daysOut / farthestOut;
+}
+
 module.exports = app => {
   // Home page
   app.get("/", isAuthenticated, (req, res) => {
@@ -11,10 +38,9 @@ module.exports = app => {
       include: [db.LongTerms]
     }).then(dbUser => {
       // console.log(dbUser);
-      let percent = 10;
+      const farthestOut = findFarthestDate(dbUser.LongTerms).diff(moment(), 'days');
       let newNodes = dbUser.LongTerms.map(item => {
-        percent += 10;
-        item.percent = percent;
+        item.percent = percentOfFarthest(farthestOut, item) * 100;
         return item;
       });
       var nodeData = JSON.stringify({nodes: newNodes});
