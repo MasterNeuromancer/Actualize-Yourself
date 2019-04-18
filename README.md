@@ -11,9 +11,7 @@ Unlike other task managers, Actualize Yourself is focused on the person, the pro
 
 ## Demo of this App
 
-You can use our app here:
-
-Currently our app isn't deployed
+[You can use our app here!](https://actualize-yourself.herokuapp.com)
 
 ## GitHub for the Boilerplate we Used
 
